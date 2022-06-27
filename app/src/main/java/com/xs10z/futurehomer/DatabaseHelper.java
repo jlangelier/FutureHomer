@@ -8,13 +8,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "student.db";
-    public static final String TABLE_NAME = "student_table";
+    public static final String DATABASE_NAME = "holons.db";
+    public static final String TABLE_NAME = "holons_table";
     public static final String COL_1 = "ID";
-    public static final String COL_2 = "NAME";
-    public static final String COL_3 = "SURNAME";
-    public static final String COL_4 = "MARKS";
-
+    public static final String COL_2 = "DESCRIPTION";
+    public static final String COL_3 = "COMPLETION_DATE";
 
 
     public DatabaseHelper(Context context) {
@@ -23,7 +21,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, SURNAME TEXT, MARKS TEXT)  ");
+        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, DESCRIPTION TEXT, COMPLETION_DATE TEXT)  ");
 
     }
 
@@ -33,12 +31,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String name, String surname, String marks) {
+    public boolean insertData(String description, String completionDate) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_2, name);
-        contentValues.put(COL_3, surname);
-        contentValues.put(COL_4, marks);
+        contentValues.put(COL_2, description);
+        contentValues.put(COL_3, completionDate);
+
         long result = db.insert(TABLE_NAME, null, contentValues);
         if (result == -1) {
             return false;
