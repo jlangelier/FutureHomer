@@ -13,3 +13,7 @@ allprojects {
         maven { url "https://jitpack.io" }
     }
 }
+
+dependencies {
+    implementation "com.github.Kunzisoft:Android-SwitchDateTimePicker:2.1"
+}
